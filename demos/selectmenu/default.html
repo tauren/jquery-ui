@@ -27,7 +27,11 @@
 		body .video .ui-selectmenu-item-icon { background: url(images/24-video-square.png) 0 0 no-repeat; }
 		body .podcast .ui-selectmenu-item-icon { background: url(images/24-podcast-square.png) 0 0 no-repeat; }
 		body .rss .ui-selectmenu-item-icon { background: url(images/24-rss-square.png) 0 0 no-repeat; }
-		
+
+		/*select with avatar icons*/
+		body a.avatars { height: 2.8em;}
+		body .avatars li a, body a.avatars span.ui-selectmenu-status { line-height: 2em; padding-left: 30px !important; }
+		body .avatar .ui-selectmenu-item-icon { height: 25px; width: 25px; }
 		
 	</style>
 	<script type="text/javascript">	
@@ -63,6 +67,21 @@
 					{find: '.rss'}
 				]
 			});			
+
+			$('select#peopleA').selectmenu({
+				style:'dropdown', 
+				icons: [
+					{find: '.avatar'}
+				]
+			});
+
+			$('select#peopleB').selectmenu({
+				style:'dropdown', 
+				icons: [
+					{find: '.avatar'}
+				]
+			});
+			
 		});		
 		
 		//a custom format option callback
@@ -177,6 +196,26 @@
 				<option value="myrss" class="rss">jQuery RSS XML</option>
 			</select>
 		</fieldset>		
+
+		<h2>"dropdown" Style with custom avatar 16x16 images</h2>
+		<fieldset>
+			<label for="peopleA">Select a Person:</label>
+			<select name="peopleA" id="peopleA">
+				<option value="1" class="avatar" title="http://www.gravatar.com/avatar/b3e04a46e85ad3e165d66f5d927eb609?d=monsterid&r=g&s=16">John Resig</option>
+				<option value="2" class="avatar" title="http://www.gravatar.com/avatar/e42b1e5c7cfd2be0933e696e292a4d5f?d=monsterid&r=g&s=16">Tauren Mills</option>
+				<option value="3" class="avatar" title="http://www.gravatar.com/avatar/bdeaec11dd663f26fa58ced0eb7facc8?d=monsterid&r=g&s=16">Jane Doe</option>
+			</select>
+		</fieldset>
+
+		<h2>"dropdown" Style with custom avatar 25x25 images</h2>
+		<fieldset>
+			<label for="peopleB">Select a Person:</label>
+			<select name="peopleB" id="peopleB" class="avatars">
+				<option value="1" class="avatar" title="http://www.gravatar.com/avatar/b3e04a46e85ad3e165d66f5d927eb609?d=monsterid&r=g&s=25">John Resig</option>
+				<option value="2" class="avatar" title="http://www.gravatar.com/avatar/e42b1e5c7cfd2be0933e696e292a4d5f?d=monsterid&r=g&s=25">Tauren Mills</option>
+				<option value="3" class="avatar" title="http://www.gravatar.com/avatar/bdeaec11dd663f26fa58ced0eb7facc8?d=monsterid&r=g&s=25">Jane Doe</option>
+			</select>
+		</fieldset>
 		
 		<h2>Demo with optgroups</h2>
 		<fieldset>
