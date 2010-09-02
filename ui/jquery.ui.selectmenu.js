@@ -132,10 +132,11 @@ $.widget("ui.selectmenu", {
 			.each(function(){
 				selectOptionData.push({
 					value: $(this).attr('value'),
-					text: self._formatText(jQuery(this).text()),
+					text: self._formatText(jQuery(this).text(), this),
 					selected: $(this).attr('selected'),
 					classes: $(this).attr('class'),
-					parentOptGroup: $(this).parent('optgroup').attr('label')
+					parentOptGroup: $(this).parent('optgroup').attr('label'),
+					title: $(this).attr('title')
 				});
 			});		
 				
@@ -204,6 +205,12 @@ $.widget("ui.selectmenu", {
 						thisLi
 							.find('a:eq(0)')
 							.prepend('<span class="'+self.widgetBaseClass+'-item-icon ui-icon '+iconClass + '"></span>');
+						
+						// TODO: Should make using value in title as an image URL an optional feature.
+						// If option has a title attribute, assumes it is a URL to an image. 
+						if (selectOptionData[i].title) {
+							thisLi.find("span").css("background-image", "url("+selectOptionData[i].title+")");
+						}
 					}
 				}
 			}
@@ -420,8 +427,8 @@ $.widget("ui.selectmenu", {
 		if(this.list.is('.'+ this.widgetBaseClass +'-open')){ this.close(event,retainFocus); }
 		else { this.open(event); }
 	},
-	_formatText: function(text){
-		return this.options.format ? this.options.format(text) : text;
+	_formatText: function(text, el){
+		return this.options.format ? this.options.format(text, el) : text;
 	},
 	_selectedIndex: function(){
 		return this.element[0].selectedIndex;
