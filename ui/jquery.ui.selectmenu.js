@@ -140,7 +140,6 @@ $.widget("ui.selectmenu", {
 					selected: $(this).attr('selected'),
 					classes: $(this).attr('class'),
 					parentOptGroup: $(this).parent('optgroup').attr('label'),
-//TNM					title: $(this).attr('title')
 					bgImage: o.bgImage.call($(this))
 				});
 			});		
@@ -208,12 +207,6 @@ $.widget("ui.selectmenu", {
 						var iconClass = o.icons[j].icon || "";						
 						thisLi
 							.find('a:eq(0)')
-// TNM							.prepend('<span class="'+self.widgetBaseClass+'-item-icon ui-icon '+iconClass + '"></span>');
-//						
-//						// TODO: Should make using value in title as an image URL an optional feature.
-//						// If option has a title attribute, assumes it is a URL to an image. 
-//						if (selectOptionData[i].title) {
-//							thisLi.find("span").css("background-image", "url("+selectOptionData[i].title+")");
 							.prepend('<span class="'+self.widgetBaseClass+'-item-icon ui-icon ' +iconClass + '"></span>');
 						if (selectOptionData[i].bgImage) {
 							thisLi.find('span').css('background-image', selectOptionData[i].bgImage);
