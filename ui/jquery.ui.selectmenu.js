@@ -22,15 +22,19 @@ $.widget("ui.selectmenu", {
 		handleWidth: 26, 
 		maxHeight: null,
 		icons: null, 
-		format: null
+		format: null,
+		bgImage: function() {}
 	},	
 	
 	_create: function() {
 		var self = this, o = this.options;
 		
+		// set a default id value
+		var selectmenuId = this.element.attr('id') || 'ui-selectmenu-' +  Math.random().toString(16).slice(2, 10);
+				
 		//quick array of button and menu id's
-		this.ids = [this.element.attr('id') + '-' + 'button', this.element.attr('id') + '-' + 'menu'];
-		
+		this.ids = [selectmenuId + '-' + 'button', selectmenuId + '-' + 'menu'];
+				
 		//define safe mouseup for future toggling
 		this._safemouseup = true;
 		
@@ -104,10 +108,10 @@ $.widget("ui.selectmenu", {
 				return ret;
 			})
 			.bind('mouseover focus', function(){ 
-				$(this).addClass(self.widgetBaseClass+'-focus ui-state-hover'); 
+				if (!o.disabled) $(this).addClass(self.widgetBaseClass+'-focus ui-state-hover'); 
 			})
 			.bind('mouseout blur', function(){  
-				$(this).removeClass(self.widgetBaseClass+'-focus ui-state-hover'); 
+				if (!o.disabled) $(this).removeClass(self.widgetBaseClass+'-focus ui-state-hover'); 
 			});
 		
 		//document click closes menu
@@ -136,7 +140,8 @@ $.widget("ui.selectmenu", {
 					selected: $(this).attr('selected'),
 					classes: $(this).attr('class'),
 					parentOptGroup: $(this).parent('optgroup').attr('label'),
-					title: $(this).attr('title')
+//TNM					title: $(this).attr('title')
+					bgImage: o.bgImage.call($(this))
 				});
 			});		
 				
@@ -200,16 +205,18 @@ $.widget("ui.selectmenu", {
 						thisLi
 							.data('optionClasses', selectOptionData[i].classes + ' ' + self.widgetBaseClass + '-hasIcon')
 							.addClass(self.widgetBaseClass + '-hasIcon');
-						var iconClass = o.icons[j].icon || "";
-						
+						var iconClass = o.icons[j].icon || "";						
 						thisLi
 							.find('a:eq(0)')
-							.prepend('<span class="'+self.widgetBaseClass+'-item-icon ui-icon '+iconClass + '"></span>');
-						
-						// TODO: Should make using value in title as an image URL an optional feature.
-						// If option has a title attribute, assumes it is a URL to an image. 
-						if (selectOptionData[i].title) {
-							thisLi.find("span").css("background-image", "url("+selectOptionData[i].title+")");
+// TNM							.prepend('<span class="'+self.widgetBaseClass+'-item-icon ui-icon '+iconClass + '"></span>');
+//						
+//						// TODO: Should make using value in title as an image URL an optional feature.
+//						// If option has a title attribute, assumes it is a URL to an image. 
+//						if (selectOptionData[i].title) {
+//							thisLi.find("span").css("background-image", "url("+selectOptionData[i].title+")");
+							.prepend('<span class="'+self.widgetBaseClass+'-item-icon ui-icon ' +iconClass + '"></span>');
+						if (selectOptionData[i].bgImage) {
+							thisLi.find('span').css('background-image', selectOptionData[i].bgImage);
 						}
 					}
 				}
@@ -247,7 +254,7 @@ $.widget("ui.selectmenu", {
 			.keydown(function(event){
 				var ret = true;
 				switch (event.keyCode) {
-					// this needs to be fixed as _moveFocus doesnt work correctly
+					// FIXME this needs to be fixed as _moveFocus doesnt work correctly
 					/*
 					case $.ui.keyCode.UP:
 					case $.ui.keyCode.LEFT:
@@ -289,11 +296,7 @@ $.widget("ui.selectmenu", {
 					case $.ui.keyCode.ESCAPE:
 						ret = false;
 						self.close(event,true);
-						break;	
-					default:
-						ret = false;
-						self._typeAhead(event.keyCode,'focus');
-						break;		
+						break;
 				}
 				return ret;
 			});
@@ -532,6 +535,9 @@ $.widget("ui.selectmenu", {
 		// check if there's enough room to expand to the bottom
 		if ((menuTop + listHeight) > (viewportHeight + pageScroll)) {
 			menuTop -= listHeight;
+		//check top
+		} else if ((menuTop - pageScroll) < (listHeight)) { 
+			menuTop += this.newelement.height() + 4; // FIMXE: this is quick & dirty but we'll change to position
 		} else {
 			if (this.newelement.is('.'+this.widgetBaseClass+'-popup')) {
 				var scrolledAmt = this.list[0].scrollTop;

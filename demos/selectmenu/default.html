@@ -38,6 +38,8 @@
 		$(function(){			
 			$('select#speedA').selectmenu();
 			
+			$('#withoutID select').selectmenu();
+			
 			$('select#speedAa').selectmenu({maxHeight: 150});
 			
 			$('select#speedB').selectmenu({
@@ -114,6 +116,24 @@
 				<option value="Slower">Slower</option>
 				<option value="Slow">Slow</option>
 				<option value="Medium" selected="selected">Medium</option>
+				<option value="Fast">Fast</option>
+				<option value="Faster">Faster</option>
+			</select>
+		</fieldset>
+		
+		<h2>Default: without ID</h2>
+		<fieldset id="withoutID">
+			<select>
+				<option value="Slower" selected="selected">Slower</option>
+				<option value="Slow">Slow</option>
+				<option value="Medium">Medium</option>
+				<option value="Fast">Fast</option>
+				<option value="Faster">Faster</option>
+			</select>			
+			<select>
+				<option value="Slower" selected="selected">Slower</option>
+				<option value="Slow">Slow</option>
+				<option value="Medium">Medium</option>
 				<option value="Fast">Fast</option>
 				<option value="Faster">Faster</option>
 			</select>
@@ -229,7 +249,7 @@
 					<option value="jquery" class="script">jQuery.js</option>
 					<option value="jqueryui" class="script">ui.jQuery.js</option>
 				</optgroup>
-				<optgroup label="other">
+				<optgroup label="Label with space">
 					<option value="somefile">Some unknown file</option>
 					<option value="someotherfile">Some other unknown file</option>
 				</optgroup>
