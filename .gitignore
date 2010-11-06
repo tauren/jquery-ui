@@ -1,8 +1,6 @@
-build/dist
-docs
 .project
-*~
-*.diff
-*.patch
-.DS_Store
-*.db
+.settings
+.classpath
+target
+.svn
+.tmp_*
