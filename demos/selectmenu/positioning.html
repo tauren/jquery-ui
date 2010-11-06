@@ -33,10 +33,12 @@
 		body .avatars li a, body a.avatars span.ui-selectmenu-status { line-height: 2em; padding-left: 30px !important; }
 		body .avatar .ui-selectmenu-item-icon { height: 25px; width: 25px; }
 		
+		.scroller {overflow: auto; height: 100px; background-color: #aed6f1;}
+		
 	</style>
 	<script type="text/javascript">	
 		$(function(){			
-			$('select#positionA, select#positionB').selectmenu({
+			$('select#positionA, select#positionB, select#positionD, select#positionE').selectmenu({
 				maxHeight: 150,
 			});			
 
@@ -50,6 +52,10 @@
 					{find: '.rss'}
 				]
 			});			
+			
+			$('#scrollerB').scroll(function() {
+				$("select#positionE").selectmenu("close");
+			})
 
 		});		
 	</script>
@@ -178,6 +184,56 @@
 					<option value="r12" class="rss">Feed 12</option>
 				</optgroup>
 			</select>
+		</fieldset>
+		<h2>Inside of a scrolling container</h2>
+		<fieldset>
+			<div id="scrollerA" class="scroller">
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<label for="positionD">Select Media:</label>
+				<select name="positionD" id="positionD" class="customicons">
+					<option value="p1" class="podcast">Podcast 1</option>
+					<option value="p2" class="podcast">Podcast 2</option>
+					<option value="p3" class="podcast">Podcast 3</option>
+					<option value="p4" class="podcast">Podcast 4</option>
+					<option value="p5" class="podcast">Podcast 5</option>
+					<option value="p6" class="podcast">Podcast 6</option>
+				</select>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+			</div>
+		</fieldset>
+		<h2>Inside of a scrolling container - close selectmenu on scroll</h2>
+		<fieldset>
+			<div id="scrollerB" class="scroller">
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<p>Scroll down</p>
+				<label for="positionE">Select Media:</label>
+				<select name="positionE" id="positionE" class="customicons">
+					<option value="p1" class="podcast">Podcast 1</option>
+					<option value="p2" class="podcast">Podcast 2</option>
+					<option value="p3" class="podcast">Podcast 3</option>
+					<option value="p4" class="podcast">Podcast 4</option>
+					<option value="p5" class="podcast">Podcast 5</option>
+					<option value="p6" class="podcast">Podcast 6</option>
+				</select>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+				<p>Scroll up</p>
+			</div>
 		</fieldset>
 	</form>
 </body>
