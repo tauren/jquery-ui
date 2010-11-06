@@ -534,9 +534,21 @@ $.widget("ui.selectmenu", {
 		} else {
 			if (this.newelement.is('.'+this.widgetBaseClass+'-popup')) {
 				var scrolledAmt = this.list[0].scrollTop;
-				this.list.find('li:lt('+this._selectedIndex()+')').each(function() {
+				// Process LIs representing OPTIONs
+				// Only includes options before the currently selected option
+				this.list.find('li:not(.ui-selectmenu-group):lt('+this._selectedIndex()+')').each(function() {
 					scrolledAmt -= $(this).outerHeight();
 				});
+				// Process LIs representing OPTGROUPs
+				// Only includes the current or previous optgroups from the selected option 
+				this.list.find('li:not(.ui-selectmenu-group):eq('+this._selectedIndex()+')')
+					.parents(".ui-selectmenu-group")
+					.prevAll()
+					.andSelf()
+					.each(function() {
+						// TODO: Remove hard coded +3, should find actual top padding/margin/border
+						scrolledAmt -= $(".ui-selectmenu-group-label",this).outerHeight() + 3;
+					});
 				menuTop+=scrolledAmt; 
 			} else { 
 				menuTop += this.newelement.height();
