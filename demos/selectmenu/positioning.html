@@ -67,7 +67,8 @@
 		<h2>Set maxHeight to 150px with lots of content</h2>
 		<p>Select something besides the default and the menu appears correctly the next time you open it. 
 		If you add some &lt;BR&gt; tags before the &lt;FORM&gt; tag, then this selectmenu doesn't work
-		correctly either.</p>
+		correctly either. NOTE: This is now fixed and should work correctly. See an older version of
+		selectmenu to see it not work properly.</p>
 		<fieldset>
 			<label for="positionA">Select Media:</label>
 			<select name="positionA" id="positionA" class="customicons">
@@ -107,7 +108,9 @@
 			</select>
 		</fieldset>
 		<h2>Exactly the same as previous: Set maxHeight to 150px with lots of content</h2>
-		<p>Select something besides the default and the menu appears in the wrong place next time you open it.</p>
+		<p>Select something besides the default and the menu appears in the wrong place next time you open it. NOTE: 
+		This is now fixed and should work correctly. See an older version of
+		selectmenu to see it not work properly.</p>
 		<fieldset>
 			<label for="positionB">Select Media:</label>
 			<select name="positionB" id="positionB" class="customicons">
@@ -186,6 +189,7 @@
 			</select>
 		</fieldset>
 		<h2>Inside of a scrolling container</h2>
+		<p>Not working correctly: Scroll down, open the selectmenu, then use scroll wheel over blue area. Note that blue area scrolls and selectmenu stays visible in same position.</p>
 		<fieldset>
 			<div id="scrollerA" class="scroller">
 				<p>Scroll down</p>
@@ -211,6 +215,7 @@
 			</div>
 		</fieldset>
 		<h2>Inside of a scrolling container - close selectmenu on scroll</h2>
+		<p>Working correctly: Scroll down, open the selectmenu, then use scroll wheel over blue area. Note that blue area scrolls and selectmenu immediately closes on scroll.</p>
 		<fieldset>
 			<div id="scrollerB" class="scroller">
 				<p>Scroll down</p>
