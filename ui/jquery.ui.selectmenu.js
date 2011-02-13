@@ -677,63 +677,6 @@ $.widget("ui.selectmenu", {
 
 		this.list.attr('aria-activedescendant', activeID);
 	},
-/*
-
-	_refreshPosition: function(){	
-		var self = this, o = this.options;
-		
-		// get some vars
-		var pageScroll = self._pageScroll();
-		var menuTop = this.newelement.offset().top;
-		var viewportHeight = $(window).height();
-		var listHeight = $(this.list[0]).outerHeight();
-		
-		// check if there's enough room to expand to the bottom
-		if ((menuTop + listHeight) > (viewportHeight + pageScroll)) {
-			menuTop -= listHeight;
-		//check top
-		} else if ((menuTop - pageScroll) < (listHeight)) { 
-			menuTop += this.newelement.height() + 4; // FIMXE: this is quick & dirty but we'll change to position
-		} else {
-			if (this.newelement.is('.'+this.widgetBaseClass+'-popup')) {
-				var scrolledAmt = this.list[0].scrollTop;
-				// Process LIs representing OPTIONs
-				// Only includes options before the currently selected option
-				this.list.find('li:not(.ui-selectmenu-group):lt('+this._selectedIndex()+')').each(function() {
-					scrolledAmt -= $(this).outerHeight();
-				});
-				// Process LIs representing OPTGROUPs
-				// Only includes the current or previous optgroups from the selected option 
-				this.list.find('li:not(.ui-selectmenu-group):eq('+this._selectedIndex()+')')
-					.parents(".ui-selectmenu-group")
-					.prevAll()
-					.andSelf()
-					.each(function() {
-						// TODO: Remove hard coded +3, should find actual top padding/margin/border
-						scrolledAmt -= $(".ui-selectmenu-group-label",this).outerHeight() + 3;
-					});
-				menuTop+=scrolledAmt; 
-			} else { 
-				menuTop += this.newelement.height();
-			}
-		}
-		// set values
-		this.list.css({
-			top: menuTop,	
-			left: this.newelement.offset().left
-		});
-	},	
-	_pageScroll: function() {
-		var yScroll;
-		if (self.pageYOffset) {
-			yScroll = self.pageYOffset;
-		// Explorer 6 Strict
-		} else if (document.documentElement && document.documentElement.scrollTop) {
-			yScroll = document.documentElement.scrollTop;
-		// all other Explorers
-		} else if (document.body) { 
-			yScroll = document.body.scrollTop;
-*/
 
 	_refreshPosition: function() {
 		var o = this.options;
@@ -741,9 +684,6 @@ $.widget("ui.selectmenu", {
 		if (o.style == "popup" && !o.positionOptions.offset) {
 			var selected = this._selectedOptionLi();
 			var _offset = "0 -" + (selected.outerHeight() + selected.offset().top - this.list.offset().top);
-
-
-
 		}
 		this.list
 			.css({
