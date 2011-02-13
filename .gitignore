@@ -1,4 +1,10 @@
 .project
+*~
+*.diff
+*.patch
+.DS_Store
+*.db
+*.session
 .settings
 .classpath
 target
