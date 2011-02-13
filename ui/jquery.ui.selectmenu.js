@@ -26,6 +26,7 @@ $.widget("ui.selectmenu", {
 		},
 		width: null, 
 		menuWidth: null, 
+		minMenuWidth: null,
 		handleWidth: 26,
 		maxHeight: null,
 		icons: null, 
@@ -360,6 +361,7 @@ $.widget("ui.selectmenu", {
 		} else { 
 			this.list.width(o.menuWidth ? o.menuWidth : (o.width ? o.width - o.handleWidth : selectWidth - o.handleWidth)); 
 		}
+		o.minMenuWidth && this.list.width() < o.minMenuWidth && this.list.width(o.minMenuWidth);
 
 		// calculate default max height
 		if (o.maxHeight) {
