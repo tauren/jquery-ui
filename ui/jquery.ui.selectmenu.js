@@ -450,9 +450,11 @@ $.widget("ui.selectmenu", {
 		$( document ).unbind( ".selectmenu" );
 
 		// unbind click on label, reset its for attr
-		$( 'label[for=' + this.newelement.attr('id') + ']' )
-			.attr( 'for', this.element.attr( 'id' ) )
-			.unbind( '.selectmenu' );
+		var lbl = $( 'label[for=' + this.newelement.attr('id') + ']' )
+			.attr( 'for', this.element.attr( 'id' ) );
+		if (lbl) {
+			lbl.unbind( '.selectmenu' );
+		}
 		
 		this.newelementWrap.remove();
 		this.listWrap.remove();
