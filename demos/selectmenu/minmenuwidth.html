@@ -10,9 +10,10 @@
 	<script type="text/javascript" src="../../ui/jquery.ui.core.js"></script>
 	<script type="text/javascript" src="../../ui/jquery.ui.widget.js"></script>
 	<script type="text/javascript" src="../../ui/jquery.ui.position.js"></script>
-	
+<!--
+	<script type="text/javascript" src="https://raw.github.com/fnagel/jquery-ui/selectmenu_v1.1.0/ui/jquery.ui.selectmenu.js"></script>	
+-->
 	<script type="text/javascript" src="../../ui/jquery.ui.selectmenu.js"></script>
-
 	<style type="text/css">
 		/* demo styles */
 		body {font-size: 62.5%; font-family:"Verdana",sans-serif; }
@@ -116,6 +117,16 @@
 	<br />
 	<br />
 	<form action="#">
+		<h2>FIXED: Empty select</h2>
+		<p>
+			Selects which are empty cause errors in console.
+		</p>
+		<fieldset>
+			<select class="empty">
+			</select>
+		</fieldset>
+
+
 		<h2>Large space for selectmenu</h2>
 		<p>
 			Selects have a width of 100% and are within sized containers. Selectmenu has it's width set
